@@ -31,7 +31,6 @@ Comment.init(
           key: 'id',
         },
       ],
-      
     },
   },
   {
