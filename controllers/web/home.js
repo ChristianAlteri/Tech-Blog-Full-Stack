@@ -6,7 +6,7 @@
 
 //   /login form to login. once logged in, nav to dashboard
 
-const authenticate = require('../../middleware/authentication');
+const withAuth = require('../../middleware/authentication');
 const { Comment, User, Post } = require('../../models');
 
 const router = require('express').Router();

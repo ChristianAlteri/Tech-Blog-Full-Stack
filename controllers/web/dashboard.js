@@ -1,10 +1,10 @@
 // password protected 
-const authenticate = require('../../middleware/authentication');
+const withAuth = require('../../middleware/authentication');
 const { Comment, User, Post } = require('../../models');
 
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     Post.findAll({
       include: [{ model: Comment }],
     })
