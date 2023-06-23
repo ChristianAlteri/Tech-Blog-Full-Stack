@@ -2,7 +2,7 @@
   {{!-- title --}}
   <h1>{{title}}</h1>
   <h1>
-    {{!-- turns the nam into a link to the individual post --}}
+    {{!-- turns the name into a link to the individual post --}}
     {{#if id}}
       <a href="/post/{{id}}">{{name}}</a>
     {{else}}
@@ -16,4 +16,11 @@
   <p>Posted at: {{formatDate date_created}}</p>
 
   <p>Created by: {{user}}</p>
+
+{{#if logged_in }}
+{{!-- ADD the associated comment --}}
+      {{>comment_form}}
+    {{else}}
+<a href="/home/login">Login to leave a comment</a>
+    {{/if}}
 </div>

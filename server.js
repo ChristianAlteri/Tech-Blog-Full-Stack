@@ -44,7 +44,11 @@ const hbs = exphbs.create({
   app.use(express.urlencoded({ extended: true }));
   
   app.use(routes);
-  
+  // redirect because course required homepage to be landing page
+  app.get('/', (req, res) => {
+    res.redirect('/home');
+  });
+
   sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
       console.log(`App listening on port ${PORT}!`);
