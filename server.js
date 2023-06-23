@@ -5,7 +5,7 @@ const routes = require('./controllers');
 const exphbs = require('express-handlebars');
 
 // Import sequelize and Store which is session saving
-const sequelize = require('./config/connection');
+const {sequelize} = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // Initialise handlebars instance and give nickname 'hbs'
@@ -15,7 +15,7 @@ const hbs = exphbs.create({
 
 // Initialise express instance and port
  const app = express() 
- const Port = process.env.Port || 3001;
+ const PORT = process.env.Port || 3001;
 
 //  here we're telling our app(express) to put hbs(handlebars) as the view engine
  app.engine('hbs', hbs.engine);
