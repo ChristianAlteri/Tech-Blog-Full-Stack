@@ -6,31 +6,50 @@ const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 
 // Import data files
-const userData = require('./userData.json');
-const postData = require('./postData.json');
-const commentData = require('./commentData.json');
+const userDataArray = require('./userData.json');
+const postDataArray = require('./postData.json');
+const commentDataArray = require('./commentData.json');
 
-const seedDatabase = async () => {
+async function seedDatabase() {
+  // Synchronize Sequelize with your database models
   await sequelize.sync({ force: true });
 
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
+  // Create an empty array to hold user objects
+  const users = [];
 
-  const posts = await Post.bulkCreate(postData, {
-    returning: true,
-  });
+  // Create new users in the database
+  for (const userData of userDataArray) {
+    const newUser = await User.create(userData);
+    users.push(newUser);
+  }
 
-  for (const comment of commentData) {
+  // Create an empty array to hold post objects
+  const posts = [];
+
+  // Create new posts in the database
+  for (const postData of postDataArray) {
+    const randomUser = users.find(user => user.id === postData.user_id);
+    const newPost = await Post.create({
+      ...postData,
+      userId: randomUser.id,
+    });
+    posts.push(newPost);
+  }
+
+  // Create comments in the database
+  for (const commentData of commentDataArray) {
+    const randomUser = users[Math.floor(Math.random() * users.length)];
+    const randomPost = posts[Math.floor(Math.random() * posts.length)];
     await Comment.create({
-      ...comment,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-      post_id: posts[Math.floor(Math.random() * posts.length)].id,
+      ...commentData,
+      user_id: randomUser.id,
+      post_id: randomPost.id,
     });
   }
 
+  // Exit the process with a status code of 0
   process.exit(0);
-};
+}
 
+// Call the seedDatabase function
 seedDatabase();
