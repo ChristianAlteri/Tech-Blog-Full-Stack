@@ -1,12 +1,5 @@
-// displays log in page or redirects to sign up page
-
-//  / display posts, comments, login signup buttons
-
-//  /signup form to sign up a User
-
-//   /login form to login. once logged in, nav to dashboard
-
-const authenticate = require('../middleware/authentication');
+// password protected 
+const authenticate = require('../../middleware/authentication');
 const { Comment, User, Post } = require('../../models');
 
 const router = require('express').Router();
