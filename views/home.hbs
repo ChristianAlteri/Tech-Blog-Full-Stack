@@ -1,0 +1,29 @@
+<section>
+
+  
+
+  {{!-- {{#each posts as |post|}}
+    {{>post_card 
+        title=post.title
+        id=post.id
+        body=post.body
+        date_created=post.date_created
+        user=post.user_id.name
+    }}
+
+  {{/each}} --}}
+{{#each posts as |post|}}
+  {{#with post.user_id as |user|}}
+    {{> post_card 
+      title=post.title
+      id=post.id
+      body=post.body
+      date_created=post.date_created
+      user=User.user.name
+    }}
+  {{/with}}
+{{/each}}
+  
+
+
+</section>

@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const routes = require('./controllers');
 const exphbs = require('express-handlebars');
+const Handlebars = require('handlebars');
 
 // Import sequelize and Store which is session saving
 const {sequelize} = require('./config/connection');
@@ -10,8 +11,13 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // Initialise handlebars instance and give nickname 'hbs'
 const hbs = exphbs.create({
-    extname: 'hbs',
-  });
+  extname: 'hbs',
+  helpers: {
+    formatDate: function (date) {
+      return new Date(date).toLocaleString();
+    },
+  },
+});
 
 // Initialise express instance and port
  const app = express() 
@@ -40,6 +46,8 @@ const hbs = exphbs.create({
   app.use(routes);
   
   sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening on http//localhost:' + PORT));
+    app.listen(PORT, () => {
+      console.log(`App listening on port ${PORT}!`);
+    });
   });
 
