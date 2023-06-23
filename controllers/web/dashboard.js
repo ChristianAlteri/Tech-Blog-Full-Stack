@@ -5,6 +5,7 @@ const { Comment, User, Post } = require('../../models');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
+// router.get('/', withAuth, (req, res) => {
     Post.findAll({
       include: [{ model: Comment }],
     })

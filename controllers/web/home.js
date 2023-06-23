@@ -32,43 +32,74 @@ router.get('/', (req, res) => {
 
 
 // Show login form & sign up
-router.get('/login', withAuth, (req, res) => {
+router.get('/login', (req, res) => {
   res.render('login', {
     logged_in: req.session.logged_in,
   });
 });
 
 // Login form
-router.post('/login', async (req, res) => {
-  try {
-    const userData = await User.user.findOne({ where: { email: req.body.email } });
+router.post('/login', (req, res) => {
+  User.findOne({ where: { email: req.body.email } })
+    .then(userData => {
+      if (!userData) {
+        res.render('login', {
+          error: 'Incorrect email or password, please try again',
+        });
+        return;
+      }
 
-    if (!userData) {
-      res.render('login', {
-        error: 'Incorrect email or password, please try again',
-      });
-      return;
-    }
-
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res.render('login', {
-        error: 'Incorrect email or password, please try again',
-      });
-      return;
-    }
-    console.log('Login working');
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-
-      res.redirect('/dashboard');
+      return userData.checkPassword(req.body.password)
+        .then(validPassword => {
+          if (!validPassword) {
+            res.render('login', {
+              error: 'Incorrect email or password, please try again',
+            });
+            return;
+          }
+          console.log('Login working');
+          req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.logged_in = true;
+            res.redirect('/dashboard');
+          });
+        });
+    })
+    .catch(err => {
+      res.status(400).json(err);
     });
-  } catch (err) {
-    res.status(400).json(err);
-  }
 });
+
+// router.post('/login', async (req, res) => {
+//   try {
+//     const userData = await User.user.findOne({ where: { email: req.body.email } });
+
+//     if (!userData) {
+//       res.render('login', {
+//         error: 'Incorrect email or password, please try again',
+//       });
+//       return;
+//     }
+
+//     const validPassword = await userData.checkPassword(req.body.password);
+
+//     if (!validPassword) {
+//       res.render('login', {
+//         error: 'Incorrect email or password, please try again',
+//       });
+//       return;
+//     }
+//     console.log('Login working');
+//     req.session.save(() => {
+//       req.session.user_id = userData.id;
+//       req.session.logged_in = true;
+
+//       res.redirect('/dashboard');
+//     });
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 
 
