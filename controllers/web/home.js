@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 
 
 // Show login form & sign up
-router.get('/login', (req, res) => {
+router.get('/login', withAuth, (req, res) => {
   res.render('login', {
     logged_in: req.session.logged_in,
   });
@@ -82,7 +82,6 @@ router.get('/signup', (req, res) => {
 
 
 router.post('/signup', async (req, res) => {
-
   try {
     const userData = await User.create(req.body);
 
