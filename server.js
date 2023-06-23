@@ -9,12 +9,15 @@ const Handlebars = require('handlebars');
 const {sequelize} = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-// Initialise handlebars instance and give nickname 'hbs'
+// Initialise handlebars instance and give nickname 'hbs' load helpers
 const hbs = exphbs.create({
   extname: 'hbs',
   helpers: {
     formatDate: function (date) {
       return new Date(date).toLocaleString();
+    },
+    reverse: function (array) {
+      return array.slice().reverse();
     },
   },
 });

@@ -17,8 +17,8 @@
 
   <p>Created by: {{user}}</p>
 
-{{#if logged_in }}
-{{!-- ADD the associated comment --}}
+{{#if logged_in}}
+{{!-- ADD the associated comments --}}
       {{>comment_form}}
     {{else}}
 <a href="/home/login">Login to leave a comment</a>

@@ -15,10 +15,11 @@ router.post('/', async (req, res) => {
 
   
       req.session.save(() => {
-        req.session.user_id = postData.id;
+        req.session.user_id = user_id.id;
         req.session.logged_in = true;
   
         res.status(200).json(postData);
+        // res.render('dashboard')
       });
     } catch (err) {
       res.status(400).json(err);
