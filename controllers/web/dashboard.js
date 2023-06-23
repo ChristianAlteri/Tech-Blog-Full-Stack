@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
       include: [{ model: Comment }],
     })
     .then((posts) => {
-      res.render('index', {
+      res.render('dashboard', {
         posts: posts.map((post) => post.get({ plain: true })),
         logged_in: req.session.logged_in,
       });

@@ -1,15 +1,18 @@
 [
     {
       "title": "First Post",
-      "body": "This is the content of the first post."
+      "body": "This is the content of the first post.",
+      "user_id": 1
     },
     {
       "title": "Second Post",
-      "body": "This is the content of the second post."
+      "body": "This is the content of the second post.",
+      "user_id": 1
     },
     {
       "title": "Third Post",
-      "body": "This is the content of the third post."
+      "body": "This is the content of the third post.",
+      "user_id": 3
     }
   ]
   
