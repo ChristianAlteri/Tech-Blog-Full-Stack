@@ -39,90 +39,92 @@ router.get('/login', (req, res) => {
 });
 
 // Login form
-router.post('/login', (req, res) => {
-  User.findOne({ where: { email: req.body.email } })
-    .then(userData => {
-      if (!userData) {
-        res.render('login', {
-          error: 'Incorrect email or password, please try again',
-        });
-        // return;
-      }
+// router.post('/login', (req, res) => {
+//   User.findOne({ where: { email: req.body.email } })
+//     .then(userData => {
+//       if (!userData) {
+//         res.render('login', {
+//           error: 'Incorrect email or password, please try again',
+//         });
+//         // return;
+//       }
 
-      // return userData.checkPassword(req.body.password)
-      return userData.checkPassword(req.body.password)
-        .then(validPassword => {
-          if (!validPassword) {
-            res.render('login', {
-              error: 'Incorrect email or password, please try again',
-            });
-            // return;
-          }
-          // return req.session.save(() => {
-          req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.logged_in = true;
-          });
-        })
-        .then(() => {
-          console.log('Login working');
-          res.redirect('/dashboard');
-        });
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
-
-
-
-// router.post('/login', async (req, res) => {
-//   try {
-//     const userData = await User.user.findOne({ where: { email: req.body.email } });
-
-//     if (!userData) {
-//       res.render('login', {
-//         error: 'Incorrect email or password, please try again',
-//       });
-//       return;
-//     }
-
-//     const validPassword = await userData.checkPassword(req.body.password);
-
-//     if (!validPassword) {
-//       res.render('login', {
-//         error: 'Incorrect email or password, please try again',
-//       });
-//       return;
-//     }
-//     console.log('Login working');
-//     req.session.save(() => {
-//       req.session.user_id = userData.id;
-//       req.session.logged_in = true;
-
-//       res.redirect('/dashboard');
+//       // return userData.checkPassword(req.body.password)
+//       return userData.checkPassword(req.body.password)
+//         .then(validPassword => {
+//           if (!validPassword) {
+//             res.render('login', {
+//               error: 'Incorrect email or password, please try again',
+//             });
+//             // return;
+//           }
+//           // return req.session.save(() => {
+//           req.session.save(() => {
+//             req.session.user_id = userData.id;
+//             req.session.logged_in = true;
+//           });
+//         })
+//         .then(() => {
+//           console.log('Login working');
+//           res.redirect('/dashboard');
+//         });
+//     })
+//     .catch(err => {
+//       res.status(400).json(err);
 //     });
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
 // });
 
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy()
-      .then(() => {
-        res.redirect('/');
-      })
-      .catch((error) => {
-        console.error('Error destroying session:', error);
-        res.redirect('/');
-      });
-  } else {
-    // req.session.destroy()
-    res.redirect('/');
-  }
-});
 
+
+router.post('/login', async (req, res) => {
+  try {
+    const userData = await User.findOne({ where: { email: req.body.email } });
+
+    if (!userData) {
+      res.render('login', {
+        error: "Incorrect email or password, please try again"
+      });
+      return;
+    }
+
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.render('login', {
+        error: "Incorrect email or password, please try again"
+      });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.redirect('/dashboard');
+      
+    });
+
+  } catch (err) {
+    res.status(400).json(err);
+  }
+
+})
+
+// router.post('/logout', (req, res) => {
+//   if (req.session.logged_in) {
+//     req.session.destroy()
+//       .then(() => {
+//         res.redirect('/');
+//       })
+//       .catch((error) => {
+//         console.error('Error destroying session:', error);
+//         res.redirect('/');
+//       });
+//   } else {
+//     // req.session.destroy()
+//     res.redirect('/');
+//   }
+// });
 
 router.get('/logout', (req, res) => {
   res.redirect('/');

@@ -8,11 +8,14 @@ router.get('/', (req, res) => {
 // router.get('/', withAuth, (req, res) => {
     Post.findAll({
       include: [{ model: Comment }],
+      include: [{ model: User }],
     })
     .then((posts) => {
+      console.log(posts);
       res.render('dashboard', {
         posts: posts.map((post) => post.get({ plain: true })),
-        user: { name: user.name }, 
+        // user: post.user, 
+        // name: .name,
         // TODO: access the user name^^^
         logged_in: req.session.logged_in,
       });

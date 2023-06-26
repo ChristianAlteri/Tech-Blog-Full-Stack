@@ -3,12 +3,12 @@
 
 <section>
   <h1>Dashboard</h1>
-  <h4>Welcome back: {{user.name}}</h4>
+  <h4>Welcome back: {{req.session.user_id}}</h4>
   <p>Here you can upload to the blog</p>
 
     
-{{>post_form}}
 
+{{>post_form}}
 {{#each (reverse posts) as |post|}}
   {{#with post.user_id as |user|}}
     {{> post_card 
@@ -16,7 +16,7 @@
       id=post.id
       body=post.body
       date_created=post.date_created
-      user=user.name
+      user=post.user_id
     }}
   {{/with}}
 {{/each}}
