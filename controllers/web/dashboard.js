@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     .then((posts) => {
       res.render('dashboard', {
         posts: posts.map((post) => post.get({ plain: true })),
-        // user: { name: user.name }, 
+        user: { name: user.name }, 
         // TODO: access the user name^^^
         logged_in: req.session.logged_in,
       });
