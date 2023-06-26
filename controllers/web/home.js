@@ -46,29 +46,35 @@ router.post('/login', (req, res) => {
         res.render('login', {
           error: 'Incorrect email or password, please try again',
         });
-        return;
+        // return;
       }
 
+      // return userData.checkPassword(req.body.password)
       return userData.checkPassword(req.body.password)
         .then(validPassword => {
           if (!validPassword) {
             res.render('login', {
               error: 'Incorrect email or password, please try again',
             });
-            return;
+            // return;
           }
-          console.log('Login working');
+          // return req.session.save(() => {
           req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
-            res.redirect('/dashboard');
           });
+        })
+        .then(() => {
+          console.log('Login working');
+          res.redirect('/dashboard');
         });
     })
     .catch(err => {
       res.status(400).json(err);
     });
 });
+
+
 
 // router.post('/login', async (req, res) => {
 //   try {
@@ -103,12 +109,22 @@ router.post('/login', (req, res) => {
 
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.redirect('/');
-    });
+    req.session.destroy()
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch((error) => {
+        console.error('Error destroying session:', error);
+        res.redirect('/');
+      });
   } else {
     res.redirect('/');
   }
+});
+
+
+router.get('/logout', (req, res) => {
+  res.redirect('/');
 });
 
 // Sign up

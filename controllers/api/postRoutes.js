@@ -15,11 +15,11 @@ router.post('/', async (req, res) => {
 
   
       req.session.save(() => {
-        req.session.user_id = user_id.id;
+        req.session.user_id = userId.id;
         req.session.logged_in = true;
   
-        res.status(200).json(postData);
-        // res.render('dashboard')
+        // res.status(200).json(postData);
+        res.redirect('/dashboard')
       });
     } catch (err) {
       res.status(400).json(err);
