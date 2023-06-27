@@ -12,7 +12,8 @@ router.post('/', async (req, res) => {
     const commentData = await Comment.create({
       ...req.body,
       user_id: userId,
-      post_id: post,
+   
+      post_id: post.id,
     });
     console.log(commentData);
     res.redirect('/dashboard');
