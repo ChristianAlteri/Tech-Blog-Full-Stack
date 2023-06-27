@@ -19,8 +19,12 @@ const hbs = exphbs.create({
     reverse: function (array) {
       return array.slice().reverse();
     },
-  },
+    lookup: function (obj, key) {
+      return obj[key];
+    }
+  }
 });
+
 
 // Initialise express instance and port
  const app = express() 

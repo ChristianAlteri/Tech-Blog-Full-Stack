@@ -15,16 +15,16 @@
     <li><a href="/home">Home</a></li>
 
     {{#if logged_in }}
-      <li><a href="/home/logout">Logout</a></li>
+      <li><a href="/logout">Logout</a></li>
       <li><a href="/dashboard">Dashboard</a></li>
     {{else}}
       <li><a href="/home/login">Login</a></li>
       <li><a href="/home/signup">Signup</a></li>
       <li><a href="/dashboard">Dashboard</a></li>
+      <aside><a href="/home/login">Login to post or leave a comment!</a></aside>
     {{/if}}
   </ul>
 </nav>
-
 
 
   <main>

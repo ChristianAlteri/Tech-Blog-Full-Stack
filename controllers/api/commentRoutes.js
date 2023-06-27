@@ -1,27 +1,26 @@
 const router = require('express').Router();
-const { Comment } = require('../../models/');
+const { Comment, Post } = require('../../models/');
 
 
 router.post('/', async (req, res) => {
   try {
       // Get the user ID from the session
     const userId = req.session.user_id;
+    const post = await Post.findByPk(req.body.post_id);
 
-    // Create the post with the provided user ID
-    const postData = await Post.create({
+    // Create the comment with the provided user ID
+    const commentData = await Comment.create({
       ...req.body,
-      user_id: userId
+      user_id: userId,
+      post_id: post,
     });
-
-
-    req.session.save(() => {
-      req.session.user_id = postData.id;
-      req.session.logged_in = true;
-
-      res.status(200).json(postData);
-    });
+    console.log(commentData);
+    res.redirect('/dashboard');
   } catch (err) {
-    res.status(400).json(err);
+    res.render('dashboard', {
+      error: "Something went wrong",
+
+    });
   }
 });
 

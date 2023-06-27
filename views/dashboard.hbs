@@ -1,26 +1,23 @@
 {{#if logged_in }}
-
-
 <section>
   <h1>Dashboard</h1>
-  <h4>Welcome back: {{req.session.user_id}}</h4>
+  <h4>Welcome back: {{user_id}}</h4>
   <p>Here you can upload to the blog</p>
-
-    
-
 {{>post_form}}
 {{#each (reverse posts) as |post|}}
-  {{#with post.user_id as |user|}}
-    {{> post_card 
-      title=post.title
-      id=post.id
-      body=post.body
-      date_created=post.date_created
-      user=post.user_id
-    }}
-  {{/with}}
+  {{!-- {{#with (lookup user) as |user|}} --}}
+      {{> post_card 
+        title=post.title
+        id=post.id
+        body=post.body
+        date_created=post.date_created
+        user=user.name
+        
+      }}
+      {{> comment_form}}
+      
+  {{!-- {{/with}} --}}
 {{/each}}
-
 </section>
  {{else}}
 

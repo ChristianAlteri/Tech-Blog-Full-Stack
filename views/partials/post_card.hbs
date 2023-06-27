@@ -18,11 +18,16 @@
 
     <p>Created by: {{user}}</p>
 
-      {{#if logged_in}}
+      {{!-- {{#if logged_in }}  --}}
   {{!-- ADD the associated comments --}}
-        {{>comment_form}}
-      {{else}}
-    <a href="/home/login">Login to leave a comment</a>
-      {{/if}}
+        {{!-- {{>comment_form}} --}}
+        {{!-- {{#each comments as |comment|}} --}}
+        {{!-- {{>comment_card }} --}}
+        {{!-- comment=comment.comment --}}
+        {{!-- }} --}}
+        {{!-- {{/each}} --}}
+      {{!-- {{else}} --}}
+      {{!-- <a href="/home/login">Login to leave a comment</a> --}}
+      {{!-- {{/if}} --}}
   </div>
 </blockquote>
