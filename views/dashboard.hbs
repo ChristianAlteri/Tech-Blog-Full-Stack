@@ -14,8 +14,17 @@
         user=user.name
         
       }}
-      {{> comment_form}}
-      
+      {{> comment_form
+      post_id=post.id
+      }}
+      {{#each post.comments as |comment|}}
+
+        {{> comment_card 
+        body=comment.body 
+        user=post.user.name
+        }}
+      {{/each}}
+
   {{!-- {{/with}} --}}
 {{/each}}
 </section>

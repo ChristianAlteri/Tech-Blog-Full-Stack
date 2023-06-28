@@ -7,6 +7,7 @@ const Handlebars = require('handlebars');
 
 // Import sequelize and Store which is session saving
 const {sequelize} = require('./config/connection');
+const { Post, Comment } = require('./models');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // Initialise handlebars instance and give nickname 'hbs' load helpers
@@ -57,6 +58,9 @@ const hbs = exphbs.create({
   });
 
   sequelize.sync({ force: false }).then(() => {
+    
+   
+    
     app.listen(PORT, () => {
       console.log(`App listening on port ${PORT}!`);
     });
