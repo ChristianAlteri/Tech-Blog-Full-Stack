@@ -1,27 +1,27 @@
 <section>
 
-  <form id= "signup-form" action="/home/signup" method="post">
+  <form id='signup-form' action='/home/signup' method='post'>
     <div>
-      <label for="name-input">Name</label>
-      <input type="text" name="name" id="name-input">
+      <label for='name-input'>Name</label>
+      <input type='text' name='name' id='name-input' />
     </div>
     <div>
-      <label for="email-input">Email</label>
-      <input type="text" name="email" id="email-input">
-    </div>
-
-    <div>
-      <label for="password-input">Password</label>
-      <input type="password" name="password" id="password-input">
+      <label for='email-input'>Email</label>
+      <input type='text' name='email' id='email-input' />
     </div>
 
-    <button type="submit">Signup</button>
+    <div>
+      <label for='password-input'>Password</label>
+      <input type='password' name='password' id='password-input' />
+    </div>
+
+    <button type='submit'>Signup</button>
 
     {{#if error}}
-    <p style="color: red;">{{error}}</p>
+      <p style='color: red;'>{{error}}</p>
     {{/if}}
   </form>
 
-  <a href="/home/login">Already have an account?</a>
+  <a href='/home/login'>Already have an account?</a>
 
 </section>

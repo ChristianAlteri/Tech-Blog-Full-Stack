@@ -1,10 +1,6 @@
-
 <section>
-  
-  
-  
 {{#each (reverse posts) as |post|}}
-  {{!-- {{#with post.user_id as |user|}} --}}
+
     {{> post_card 
       title=post.title
       id=post.id
@@ -12,14 +8,5 @@
       date_created=post.date_created
       user=user.name
     }}
-  {{!-- {{#if logged_in}} --}}
-  {{!-- ADD the associated comments --}}
-  {{!-- {{>comment_form}} --}}
-  {{!-- {{else}} --}}
-  {{!-- {{/if}} --}}
-{{!-- {{/with}} --}}
 {{/each}}
-  
-
-
 </section>

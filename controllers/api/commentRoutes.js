@@ -4,7 +4,6 @@ const { Comment, Post } = require('../../models/');
 
 router.post('/', async (req, res) => {
   try {
-    // console.log(req.body);
     // Get the user ID from the session
     const userId = req.session.user_id;
     const post = await Post.findByPk(req.body.post_id);
@@ -19,10 +18,8 @@ router.post('/', async (req, res) => {
     const commentData = await Comment.create({
       ...req.body,
       user_id: userId,
-      // post_id: post.id,
     });
 
-    // console.log(commentData);
     res.redirect('/dashboard');
   } catch (err) {
     console.log(`Error creating comment: ${err}`);

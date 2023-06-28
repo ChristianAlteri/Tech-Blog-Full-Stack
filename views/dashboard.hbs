@@ -6,7 +6,6 @@
   <h3> </h3>
 {{>post_form}}
 {{#each (reverse posts) as |post|}}
-  {{!-- {{#with (lookup user) as |user|}} --}}
       {{> post_card 
         title=post.title
         id=post.id
@@ -24,13 +23,11 @@
         user=post.user.name
         }}
       {{/each}}
-
-  {{!-- {{/with}} --}}
 {{/each}}
 </section>
  {{else}}
 
-  <p> <a href="/home/login">Login </a> to upload to the blog or<a href="/home/signup"> Sign up</a></p>
+  <p><a href="/home/login">Login </a> to upload to the blog or<a href="/home/signup"> Sign up</a></p>
   
 
 {{/if}}

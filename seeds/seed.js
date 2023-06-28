@@ -1,6 +1,6 @@
 // Import models
 
-const { sequelize }  = require('../config/connection');
+const { sequelize } = require('../config/connection');
 const User = require('../models/User');
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
@@ -28,7 +28,7 @@ async function seedDatabase() {
 
   // Create new posts in the database
   for (const postData of postDataArray) {
-    const randomUser = users.find(user => user.id === postData.user_id);
+    const randomUser = users.find((user) => user.id === postData.user_id);
     const newPost = await Post.create({
       ...postData,
       userId: randomUser.id,

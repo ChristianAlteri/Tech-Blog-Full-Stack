@@ -1,26 +1,24 @@
 <section>
 
-  <form action="/home/login" method="post">
-
-
-    <div>
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email">
-    </div>
-
+  <form action='/home/login' method='post'>
 
     <div>
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password">
+      <label for='email'>Email</label>
+      <input type='text' name='email' id='email' />
     </div>
 
-    <button type="submit">Login</button>
+    <div>
+      <label for='password'>Password</label>
+      <input type='password' name='password' id='password' />
+    </div>
+
+    <button type='submit'>Login</button>
 
     {{#if error}}
-    <p style="color: red;">{{error}}</p>
+      <p style='color: red;'>{{error}}</p>
     {{/if}}
   </form>
 
-  <a href="/home/signup">Don't have an account?</a>
+  <a href='/home/signup'>Don't have an account?</a>
 
 </section>
