@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tech Blog</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
 </head>
 <body>
   
@@ -12,15 +12,15 @@
 
  <nav>
   <ul>
-    <li><a href="/home">Home</a></li>
+    <button><li><a href="/home">Home</a></li></button>
 
     {{#if logged_in }}
-      <li><a href="/logout">Logout</a></li>
-      <li><a href="/dashboard">Dashboard</a></li>
+      <button><li><a href="/logout">Logout</a></li></button>
+      <button><li><a href="/dashboard">Dashboard</a></li></button>
     {{else}}
-      <li><a href="/home/login">Login</a></li>
-      <li><a href="/home/signup">Signup</a></li>
-      <li><a href="/dashboard">Dashboard</a></li>
+      <button><li><a href="/home/login">Login</a></li></button>
+      <button><li><a href="/home/signup">Signup</a></li></button>
+      <button><li><a href="/dashboard">Dashboard</a></li></button>
       <aside><a href="/home/login">Login to post or leave a comment!</a></aside>
     {{/if}}
   </ul>
