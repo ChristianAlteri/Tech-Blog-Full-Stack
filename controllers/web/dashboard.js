@@ -33,15 +33,27 @@ router.get('/', (req, res) => {
 router.get('/user/:name', (req, res) => {
   User.findOne({
     where: { name: req.params.name },
-    include: [{ model: Post}, { model: Comment }],
+    include: [
+      { 
+        model: Post, 
+        include: [
+          {model: Comment,
+          include: [
+            {model: User}
+          ]},
+        ]
+      }, 
+
+    ],
   })
     .then((user) => {
       res.render('userDashboard', {
         // user: user,
         userPosts: user.posts.map((post) => post.get({ plain: true })),
         logged_in: req.session.logged_in,
+        user: user.dataValues,
       });
-      console.log(user);
+      console.log(user.posts.map((post) => post.get({ plain: true }))[0].comments);
     })
     .catch((err) => {
       console.log(err);

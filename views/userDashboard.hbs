@@ -4,14 +4,15 @@
   <h3>Here you can upload to the blog</h3>
   <h3> </h3>
   <h3> </h3>
+  <h3> </h3>
 {{>post_form}}
-{{#each (posts) as |post|}}
+{{#each userPosts as |post|}}
       {{> post_card 
         title=post.title
         id=post.id
         body=post.body
         date_created=post.date_created
-        user=user.name
+        user=../user.name
       }}
       {{> comment_form
       post_id=post.id
@@ -20,7 +21,7 @@
 
         {{> comment_card 
         body=comment.body 
-        user=post.user.name
+        user=comment.user.name
         }}
       {{/each}}
 {{/each}}
