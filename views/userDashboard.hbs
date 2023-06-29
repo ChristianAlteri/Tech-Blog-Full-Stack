@@ -1,0 +1,33 @@
+{{#if logged_in }}
+<section>
+  <h1>Dashboard</h1>
+  <h3>Here you can upload to the blog</h3>
+  <h3> </h3>
+  <h3> </h3>
+{{>post_form}}
+{{#each (posts) as |post|}}
+      {{> post_card 
+        title=post.title
+        id=post.id
+        body=post.body
+        date_created=post.date_created
+        user=user.name
+      }}
+      {{> comment_form
+      post_id=post.id
+      }}
+      {{#each post.comments as |comment|}}
+
+        {{> comment_card 
+        body=comment.body 
+        user=post.user.name
+        }}
+      {{/each}}
+{{/each}}
+</section>
+ {{else}}
+
+  <p><a href="/home/login">Login </a> to upload to the blog or<a href="/home/signup"> Sign up</a></p>
+  
+
+{{/if}}
