@@ -1,6 +1,11 @@
-<h1>{{title}}</h1>
-<blockquote>
-  <h2>{{body}}</h2>
-  <p>Posted on: {{formatDate date_created}}</p>
-  <p>Created by: {{user}}</p>
-</blockquote>
+
+<div>
+  <h1>{{this.title}}</h1>
+  <blockquote style="background-color: #dec0f9; border: 2px solid #030303; border-radius: 10px; padding: 20px;">
+    <h2>{{this.body}}</h2>
+    <p>Posted on: {{formatDate this.date_created}}</p>
+    <p>Created by: {{this.user}}</p>
+  </blockquote>
+  
+</div>
+

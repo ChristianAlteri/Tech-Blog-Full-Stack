@@ -1,7 +1,7 @@
 {{#if logged_in }}
 <section>
-  <h1>Dashboard</h1>
-  <h3>Here you can upload to the blog</h3>
+  <h1>📜 Dashboard📜 </h1>
+  <h3>Here you can upload to the blog 📝</h3>
   <h3> </h3>
   <h3> </h3>
 {{>post_form}}
@@ -23,6 +23,10 @@
         user=post.user.name
         }}
       {{/each}}
+      <button style="background-color: #b790de; border-radius: 50px; max-width: 200px;" href="/post/{{this.post.id}}/update" type='submit'>Update Post</button>
+      <form method="POST" action="api/post/{{post.id}}">
+      <button style="background-color: #b790de; border-radius: 50px; max-width: 200px;" type="submit">Delete Post</button>
+</form>
 {{/each}}
 </section>
  {{else}}

@@ -4,6 +4,8 @@ const session = require('express-session');
 const routes = require('./controllers');
 const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars');
+// const methodOverride = require('method-override');
+
 
 // Import sequelize and Store which is session saving
 const { sequelize } = require('./config/connection');
@@ -15,7 +17,13 @@ const hbs = exphbs.create({
   extname: 'hbs',
   helpers: {
     formatDate: function (date) {
-      return new Date(date).toLocaleString();
+      const formattedDate = new Date(date);
+    
+      const day = String(formattedDate.getDate()).padStart(2, '0');
+      const month = String(formattedDate.getMonth() + 1).padStart(2, '0');
+      const year = String(formattedDate.getFullYear()).slice(-2);
+    
+      return `${day}/${month}/${year}`;
     },
     reverse: function (array) {
       return array.slice().reverse();
@@ -46,6 +54,8 @@ const sess = {
 
 //   telling express to use the middleware for session with the options provided in the variable 'sess'
 app.use(session(sess));
+// app.use(methodOverride('_method'));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
