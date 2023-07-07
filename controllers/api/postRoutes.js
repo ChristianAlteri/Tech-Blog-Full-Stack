@@ -22,6 +22,39 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/update/:id', async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const post = await Post.findOne({
+      where: {
+        id: postId
+      }
+    });
+    res.render('update_form', {post});
+    // console.log(post);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.post('/update/:id', async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const updatedPost = await Post.update(
+      {
+        title: req.body.title, 
+        body: req.body.body 
+      },
+      {
+        where: { id: postId }
+      }
+    );
+    res.redirect('/dashboard');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // router.delete('/:id', async (req, res) => {
 //   try {
 //     const postId = req.params.id; 

@@ -1,0 +1,15 @@
+<form method='POST' action='/api/post/update/{{post.dataValues.id}}'>
+  <div>
+    <label for='title'>What's on your mind? 🗣 </label>
+    <input type='text' id='title' name='title' placeholder='{{post.dataValues.title}}' />
+</div>
+
+  <div>
+    <label for='body'>Tell me more.... 🎓</label>
+    <textarea id='body' name='body' placeholder='{{post.dataValues.body}}' ></textarea>
+  </div>
+
+  <button type='submit'>Post</button>
+
+  
+</form>

@@ -23,10 +23,12 @@
         user=post.user.name
         }}
       {{/each}}
-      <button style="background-color: #b790de; border-radius: 50px; max-width: 200px;" href="/post/{{this.post.id}}/update" type='submit'>Update Post</button>
-      <form method="POST" action="api/post/{{post.id}}">
-      <button style="background-color: #b790de; border-radius: 50px; max-width: 200px;" type="submit">Delete Post</button>
-</form>
+      <form action="/api/post/update/{{post.id}}" method="GET">
+        <button style="background-color: #b790de; border-radius: 50px; max-width: 200px;" type="submit">Update Post</button>
+      </form>
+
+      
+     <button class="deleteButton" data-post-id="{{id}}" style="background-color: #b790de; border-radius: 50px; max-width: 200px;" type="submit">Delete Post</button>
 {{/each}}
 </section>
  {{else}}
@@ -35,3 +37,37 @@
   
 
 {{/if}}
+
+<script>
+// Find all delete buttons
+const deleteButtons = document.querySelectorAll('.deleteButton');
+
+// Add a click event listener to each delete button
+deleteButtons.forEach((button) => {
+  button.addEventListener('click', async () => {
+    try {
+      const postId = button.dataset.postId; // Get the post ID from the data attribute
+
+      // Make a fetch request to delete the post
+      const response = await fetch(`api/post/${postId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // Check the response status
+      if (response.ok) {
+        // Post deleted successfully
+        console.log('Post deleted');
+        // You can update the UI or perform any other necessary actions here
+      } else {
+        // Handle the error case
+        console.error('Failed to delete post');
+      }
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
+  });
+});
+</script>
