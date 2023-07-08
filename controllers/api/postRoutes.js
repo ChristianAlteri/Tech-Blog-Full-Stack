@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../../models/');
+const { Post, Comment } = require('../../models/');
 
 router.post('/', async (req, res) => {
   try {
@@ -96,6 +96,7 @@ router.post('/:id', async (req, res) => {
     res.redirect('/dashboard');
   } catch (err) {
     res.status(500).json(err);
+    console.log(err);
   }
 });
 
