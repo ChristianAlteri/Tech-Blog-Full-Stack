@@ -1,18 +1,18 @@
 [
-    {
-      "title": "First Post",
-      "body": "This is the content of the first post.",
-      "user_id": 1
-    },
-    {
-      "title": "Second Post",
-      "body": "This is the content of the second post.",
-      "user_id": 1
-    },
-    {
-      "title": "Third Post",
-      "body": "This is the content of the third post.",
-      "user_id": 3
-    }
+  {
+    "title": "Richard Feynman",
+    "body": "The first principle is that you must not fool yourself, and you are the easiest person to fool.",
+    "user_id": 1
+},
+{
+    "title": "Carl Sagan",
+    "body": "The cosmos is within us. We are made of star-stuff. We are a way for the universe to know itself.",
+    "user_id": 2
+},
+{
+    "title": "Werner Heisenberg",
+    "body": "Not only is the Universe stranger than we think, it is stranger than we can think.",
+    "user_id": 3
+}
   ]
   

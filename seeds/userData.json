@@ -1,18 +1,18 @@
 [
-    {
-      "name": "John Doe",
-      "email": "john@example.com",
-      "password": "password123"
-    },
-    {
-      "name": "Jane Smith",
-      "email": "jane@example.com",
-      "password": "password123"
-    },
-    {
-      "name": "David Johnson",
-      "email": "david@example.com",
-      "password": "password123"
-    }
+  {
+    "name": "Richard Feynman",
+    "email": "feynman@example.com",
+    "password": "password123"
+},
+{
+    "name": "Carl Sagan",
+    "email": "sagan@example.com",
+    "password": "password123"
+},
+{
+    "name": "Werner Heisenberg",
+    "email": "heisenberg@example.com",
+    "password": "password123"
+}
   ]
   

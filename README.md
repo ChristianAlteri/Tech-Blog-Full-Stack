@@ -7,9 +7,9 @@ Welcome to my app! It's the ultimate hub for tech writing enthusiasts like you. 
 
 ## Mock-Up
 
-The following video shows an example of the application being used from Insomnia: {click picture}
+The following picture shows an example of the application being used: {click picture}
 
-[![A video thumbnail shows the insomnia management application with a play button overlaying the view.](./Assets/insomnia.png)](https://drive.google.com/file/d/1L6Yvk-bUjeMkQ0wZz2rUbWnGayDKR6nh/view)
+[![The following picture shows an example of the application being used.](./public/js/assets/techblog.jpg)]
 
 ## Table of contents
 
