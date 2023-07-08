@@ -55,7 +55,7 @@ deleteButtons.forEach((button) => {
           'Content-Type': 'application/json',
         },
       });
-
+      document.location.replace('/dashboard');
       // Check the response status
       if (response.ok) {
         // Post deleted successfully
@@ -64,8 +64,7 @@ deleteButtons.forEach((button) => {
       } else {
         // Handle the error case
         console.error('Failed to delete post');
-        
-        
+
       }
     } catch (error) {
       console.error('Error occurred:', error);

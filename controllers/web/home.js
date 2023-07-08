@@ -1,10 +1,8 @@
 const { User, Post } = require('../../models');
-// const { s}
 const router = require('express').Router();
 
 // Get landing page
 router.get('/', (req, res) => {
-  // setTimeout();
   Post.findAll({
     include: [User],
   })

@@ -55,26 +55,6 @@ router.post('/update/:id', async (req, res) => {
   }
 });
 
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     const postId = req.params.id; 
-
-//     postData = await Post.destroy({
-//       where: {
-//         id: postId
-//       },
-//     });
-
-//     if (!postData) {
-//       res.status(404).json({ message: 'No post found with this id!' });
-//       return;
-//     }
-//     res.redirect('/dashboard');
-//     // res.status(200).json(postData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 router.post('/:id', async (req, res) => {
   try {
     const postId = req.params.id;
@@ -93,38 +73,14 @@ router.post('/:id', async (req, res) => {
       }
     });
 
-    res.redirect('/dashboard');
+    // res.redirect('/dashboard');
+    // window.redirect("/dashboard")
+    res.render("dashboard");
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
   }
 });
 
-
-
-
-
-
-
-// router.update('/', async (req, res) => {
-//   try {
-//     // Get the user ID from the session
-//     const userId = req.session.user_id;
-
-//     // Create the post with the provided user ID
-//     const postData = await Post.create({
-//       ...req.body,
-//       user_id: userId,
-//     });
-//     req.session.save(() => {
-//       req.session.user_id = userId;
-//       req.session.logged_in = true;
-
-//       res.redirect('/dashboard');
-//     });
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
 
 module.exports = router;

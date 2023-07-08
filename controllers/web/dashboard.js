@@ -41,7 +41,6 @@ router.get('/user/:name', (req, res) => {
   })
     .then((user) => {
       res.render('userDashboard', {
-        // user: user,
         userPosts: user.posts.map((post) => post.get({ plain: true })),
         logged_in: req.session.logged_in,
         user: user.dataValues,
